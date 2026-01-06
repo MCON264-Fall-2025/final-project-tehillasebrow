@@ -38,7 +38,7 @@ public class GuestListMangerTest {
         //act
         manager.addGuest(guest);
         // Updated to pass both name and tag
-        manager.removeGuest("Aviva", "Friends");
+        manager.removeGuest("Aviva-Friends");
         // assert- Guest should no longer be in the LinkedList
         assertFalse(manager.getAllGuests().contains(guest));
     }
@@ -50,7 +50,7 @@ public class GuestListMangerTest {
         manager.addGuest(new Guest("Aviva", "Friends"));
         //act
         // Updated to pass both name and tag
-        manager.removeGuest("Aviva", "Friends");
+        manager.removeGuest("Aviva-Friends");
         // assert- Guest should no longer be in the Map
         assertNull(manager.findGuest("Aviva-Friends"));
     }

@@ -51,7 +51,8 @@ public class Main {
                     String nameToRemove = input.nextLine();
                     System.out.println("Whats the group tag of the guest you want to remove?");
                     String tagToRemove = input.nextLine();
-                    boolean isGuestRemoved= guestListManager.removeGuest(nameToRemove, tagToRemove);
+                    String nameAndGuest= nameToRemove+" "+tagToRemove;
+                    boolean isGuestRemoved= guestListManager.removeGuest(nameAndGuest);
                     if (isGuestRemoved) {
                         System.out.println(nameToRemove+ " with tag: "+tagToRemove+ " was successfully removed");
                     } else{

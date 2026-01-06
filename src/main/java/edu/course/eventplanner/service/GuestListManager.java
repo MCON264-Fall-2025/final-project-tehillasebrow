@@ -27,25 +27,37 @@ public class GuestListManager {
         size++;
     }
 
-    public boolean removeGuest(String name, String tag) {
-        // We must build the EXACT same string to find them in the map
-        String key = name + "-" + tag;
-        // Use the map to find the object instantly
-        Guest toRemove = guestByKey.get(key);
+    public boolean removeGuest(String identifier) {
+        Guest toRemove = findGuest(identifier);
 
         if (toRemove == null) {
             return false;
         }
 
+        // Build the key that was actually used in the map to ensure it is removed
+        String actualKey = toRemove.getName() + "-" + toRemove.getGroupTag();
+
         //Remove from both to keep them in sync
         guests.remove(toRemove); // Removes from the LinkedList
-        guestByKey.remove(key); // Removes from the HashMap
+        guestByKey.remove(actualKey); // Removes from the HashMap
         size--;
         return true;
     }
 
-    public Guest findGuest(String compositeKey) {
-        return guestByKey.get(compositeKey);
+    public Guest findGuest(String identifier) {
+        // try to find by the composite key (Name-Tag)
+        if (guestByKey.containsKey(identifier)) {
+            return guestByKey.get(identifier);
+        }
+
+        // to pass the professors unit tests I added this in- search the list by name only
+        for (Guest g : guests) {
+            if (g.getName().equals(identifier)) {
+                return g;
+            }
+        }
+
+        return null;
     }
 
 
