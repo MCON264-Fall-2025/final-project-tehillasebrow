@@ -29,7 +29,9 @@ public class VenueSelector {
                 map.put(venue, venue);
             }
         }
-
+        if (map.isEmpty()) {
+            return null; // Return null if no venue fits
+        }
 
         return map.firstEntry().getValue();
     }

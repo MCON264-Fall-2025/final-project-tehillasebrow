@@ -13,7 +13,7 @@ public class SeatingPlanner {
        Queue<Guest> nbrQueue = new LinkedList<>();
        Queue<Guest> cwrkrQueue = new LinkedList<>();
 
-
+//goes through the guest list and adds them to the right queue according to their tag
         for(Guest guest : guests){
             if (Objects.equals(guest.getGroupTag(), "family"))
             {
@@ -28,17 +28,16 @@ public class SeatingPlanner {
         int tablesctr=venue.getTables();
         int seatsPerTablectr=venue.getSeatsPerTable();
         int capacity=venue.getCapacity();
-        for(int i=0;i<tablesctr;i++){
 
-        }
 
 
         Map<Integer,List<Guest>> map = new TreeMap<>();
+//goes through the family list and adds them to the tables first. Table 10 fills up first, then table 9 ect...
 
            while (!famQueue.isEmpty()){
                map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(famQueue.remove());
                seatsPerTablectr--;
-               if(seatsPerTablectr==0){
+               if(seatsPerTablectr==0){//when the seats get to 0, we decrease the table number and add seats back to the seats per table ctr
                    tablesctr--;
                    seatsPerTablectr=venue.getSeatsPerTable();
                    if(tablesctr==0){
