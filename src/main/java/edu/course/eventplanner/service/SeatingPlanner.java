@@ -43,6 +43,7 @@ public class SeatingPlanner {
                    seatsPerTablectr=venue.getSeatsPerTable();
                    if(tablesctr==0){
                        System.out.println("Tables are filled.");
+                       return map;
                    }
                }
 
@@ -74,7 +75,7 @@ public class SeatingPlanner {
 
         }
         while (!cwrkrQueue.isEmpty()){
-            map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(famQueue.remove());
+            map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(cwrkrQueue.remove());
             seatsPerTablectr--;
             if(seatsPerTablectr==0){
                 tablesctr--;
