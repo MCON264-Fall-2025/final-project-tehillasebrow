@@ -12,6 +12,7 @@ Generate seating chart
 Add preparation task
 Execute next task
 Undo last task
-Print event summary*/
+Print event summary
+you have to ask the user for input!!!!!!!*/
     }
 }
