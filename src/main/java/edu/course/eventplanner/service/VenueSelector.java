@@ -14,7 +14,8 @@ public class VenueSelector {
 
     public Venue selectVenue(double budget, int guestCount) {
         TreeMap<Venue, Venue> map = new TreeMap<>(
-                (v1, v2) -> {
+                (v1, v2) -> { // i didnt realize that we could do collections.sort. I sorted by cost and capacity using a comparator
+
                     int budgetComp = Double.compare(v1.getCost(), v2.getCost());
                     if (budgetComp == 0) {
                         return budgetComp;
@@ -30,10 +31,10 @@ public class VenueSelector {
             }
         }
         if (map.isEmpty()) {
-            return null; // Return null if no venue fits
+            return null;}
+
+            return map.firstEntry().getValue();
         }
 
-        return map.firstEntry().getValue();
-    }
-}
 
+}

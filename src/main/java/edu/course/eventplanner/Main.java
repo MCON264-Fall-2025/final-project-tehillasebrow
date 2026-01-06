@@ -26,13 +26,7 @@ Execute next task
 Undo last task
 Print event summary
 you have to ask the user for input!!!!!!!*/
-        System.out.println("---------------------------");
-        System.out.println("Welcome to the Event Planner!");
-        System.out.print("\n 1. Load Sample Data\n 2. Add Guest \n 3. Remove Guest \n4. Select Venue\n 5.Generate seating chart\n" +
-                "6. Add preparation task\n" +
-                "7. Execute next task\n" +
-                "8. Undo last task\n" +
-                "9. Print event summary\n 10. Exit");
+
 
     Scanner sc=new Scanner(System.in);
     GuestListManager  guestListManager=new GuestListManager();
@@ -40,9 +34,22 @@ you have to ask the user for input!!!!!!!*/
     VenueSelector venueSelector= new VenueSelector(Generators.generateVenues());
     Venue selectedVenue = null;
     SeatingPlanner seatingPlanner = null;
-   int num=sc.nextInt();
+
    boolean running=true;
 while(running) {
+    System.out.println("---------------------------");
+    System.out.println("Welcome to the Event Planner!");
+    System.out.print("\n 1. Load Sample Data\n 2. Add Guest \n 3. Remove Guest \n4. Select Venue\n 5.Generate seating chart\n" +
+            "6. Add preparation task\n" +
+            "7. Execute next task\n" +
+            "8. Undo last task\n" +
+            "9. Print event summary\n 10. Exit");
+    if (!sc.hasNextInt()) {
+        System.out.println("Invalid input. Please enter a number.");
+        sc.next(); //
+        continue;}
+   int num=sc.nextInt();
+    sc.nextLine();
     switch (num) {
         case 1:
             System.out.println("How many guests do you want to add?");
@@ -77,7 +84,7 @@ while(running) {
             double budget = sc.nextDouble();
             System.out.print("Enter estimated guest count: ");
             int count = sc.nextInt();
-            sc.nextLine(); // consume newline
+            sc.nextLine();
             selectedVenue = venueSelector.selectVenue(budget, count);
             if (selectedVenue != null) {
                 System.out.println("Selected venue: " + selectedVenue.getName());
@@ -109,11 +116,11 @@ while(running) {
             break;
         case 7:
             taskManager.executeNextTask();
-            System.out.println("Task executed.");
+            System.out.println("Task "+ taskManager.executeNextTask() +"executed.");
             break;
         case 8:
-            taskManager.undoLastTask();
-            System.out.println("Task undone.");
+
+            System.out.println("Task "+ taskManager.undoLastTask() +" was undone");
             break;
         case 9:
             System.out.println("Event Summary:");
