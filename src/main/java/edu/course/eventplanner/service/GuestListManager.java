@@ -17,8 +17,8 @@ public class GuestListManager {
         if(!guestByName.containsKey(guestName)){
             return false;
         }
-        guestByName.remove(guestName);
-        guests.remove(guestByName.get(guestName));
+        Guest rguest =guestByName.remove(guestName);
+        guests.remove(rguest);
         return true; }
     public Guest findGuest(String guestName) {
         if (guestByName.containsKey(guestName)){

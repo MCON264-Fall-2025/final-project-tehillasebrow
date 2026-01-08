@@ -115,8 +115,11 @@ while(running) {
             System.out.println("Task added.");
             break;
         case 7:
-            taskManager.executeNextTask();
-            System.out.println("Task "+ taskManager.executeNextTask() +"executed.");
+            Task task=taskManager.executeNextTask();
+            if(task!=null) {
+                System.out.println("Task executed successfully.");
+            }else{
+            System.out.println("No task found");}
             break;
         case 8:
 

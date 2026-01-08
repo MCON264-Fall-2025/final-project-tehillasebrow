@@ -10,10 +10,12 @@ public class TaskManager {
     upcoming.add(task);}
     public Task executeNextTask() {
         System.out.println("Executing next task");
+        if(upcoming.isEmpty()){return null;}
         completed.push(upcoming.remove());
        return completed.peek(); }
     public Task undoLastTask() {
         System.out.println("Undoing last task");
+        if(completed.isEmpty()){return null;}
         Task task = completed.pop();
         upcoming.add(task);
        return task;}

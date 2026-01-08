@@ -47,6 +47,7 @@ public class SeatingPlanner {
                }
 
             }
+
         while (!frndQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(frndQueue.remove());
             seatsPerTablectr--;
