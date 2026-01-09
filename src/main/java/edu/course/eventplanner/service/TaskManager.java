@@ -12,13 +12,16 @@ public class TaskManager {
     public Task executeNextTask() {
 
         if(upcoming.isEmpty()){return null;}
-        completed.push(upcoming.remove());
-       return completed.peek(); }
+        Task nextTask=upcoming.remove();
+        completed.push(nextTask);
+       return nextTask; }
     public Task undoLastTask() {
 
         if(completed.isEmpty()){return null;}
         Task task = completed.pop();
         upcoming.add(task);
        return task;}
-    public int remainingTaskCount() { return upcoming.size()-1; }
+    public int remainingTaskCount() {
+        if(upcoming.isEmpty()){return 0;}
+        return upcoming.size()-1; }
 }
