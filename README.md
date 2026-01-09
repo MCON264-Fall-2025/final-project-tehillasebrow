@@ -27,6 +27,6 @@ Which sorting and searching algorithms you used
 I used a merge sort for sorting the guest list and a binary search for searching the guest list.
 
 Big-O complexity for:
-Finding a guest o(1) because it's a map
+Finding a guest o(1) because it's a map 
 Selecting a venue o(log n)
 Generating seating o(n)

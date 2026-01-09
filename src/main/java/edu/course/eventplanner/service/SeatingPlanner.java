@@ -37,55 +37,54 @@ public class SeatingPlanner {
            while (!famQueue.isEmpty()){
                map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(famQueue.remove());
                seatsPerTablectr--;
-               if(seatsPerTablectr==0){//when the seats get to 0, we decrease the table number and add seats back to the seats per table ctr
+               if(seatsPerTablectr==0 || !(tablesctr ==0)){//when the seats get to 0, we decrease the table number and add seats back to the seats per table ctr
                    tablesctr--;
                    seatsPerTablectr=venue.getSeatsPerTable();
-                   if(tablesctr==0){
-
-                       return map;
-                   }
                }
+               if(tablesctr==0){
 
+                   return map;
+               }
             }
 
         while (!frndQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(frndQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0){
+            if(seatsPerTablectr==0 || !(tablesctr ==0)){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
-                if(tablesctr==0){
 
-                    return map;
-                }
             }
+            if(tablesctr==0){
 
+                return map;
+            }
         }
         while (!nbrQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(nbrQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0){
+            if(seatsPerTablectr==0 || !(tablesctr ==0)){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
-                if(tablesctr==0){
 
-                    return map;
-                }
             }
+            if(tablesctr==0){
 
+                return map;
+            }
         }
         while (!cwrkrQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(cwrkrQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0){
+            if(seatsPerTablectr==0 || !(tablesctr ==0)){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
-                if(tablesctr==0){
 
-                    return map;
-                }
             }
+            if(tablesctr==0){
 
+                return map;
+            }
         }
 
 
