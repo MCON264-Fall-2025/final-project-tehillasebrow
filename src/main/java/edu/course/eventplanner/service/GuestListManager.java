@@ -8,7 +8,7 @@ public class GuestListManager {
     private final Map<String, Guest> guestByName = new HashMap<>();
     public void addGuest(Guest guest) { /* TODO */
    if(guestByName.containsKey(guest.getName())){
-       System.out.println("Guest already exists");
+
    } else{
     guests.add(guest);
     guestByName.put(guest.getName(), guest);}
@@ -21,13 +21,9 @@ public class GuestListManager {
         guests.remove(rguest);
         return true; }
     public Guest findGuest(String guestName) {
-        if (guestByName.containsKey(guestName)){
-            System.out.println("Guest found");
-            return guestByName.get(guestName);
-        }else{
-            System.out.println("Guest not found");
-            return null;
-        }
+        // System.out.println("Guest found");
+        // System.out.println("Guest not found");
+        return guestByName.getOrDefault(guestName, null);
     }
     public int getGuestCount() {
         return guests.size(); }

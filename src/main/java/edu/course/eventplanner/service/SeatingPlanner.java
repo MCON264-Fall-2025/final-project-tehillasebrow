@@ -41,7 +41,7 @@ public class SeatingPlanner {
                    tablesctr--;
                    seatsPerTablectr=venue.getSeatsPerTable();
                    if(tablesctr==0){
-                       System.out.println("Tables are filled.");
+
                        return map;
                    }
                }
@@ -55,7 +55,7 @@ public class SeatingPlanner {
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
                 if(tablesctr==0){
-                    System.out.println("Tables are filled.");
+
                     return map;
                 }
             }
@@ -68,7 +68,7 @@ public class SeatingPlanner {
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
                 if(tablesctr==0){
-                    System.out.println("Tables are filled.");
+
                     return map;
                 }
             }
@@ -81,7 +81,7 @@ public class SeatingPlanner {
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
                 if(tablesctr==0){
-                    System.out.println("Tables are filled.");
+
                     return map;
                 }
             }
