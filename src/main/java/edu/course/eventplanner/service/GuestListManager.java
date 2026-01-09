@@ -7,8 +7,8 @@ public class GuestListManager {
     private final LinkedList<Guest> guests = new LinkedList<>();
     private final Map<String, Guest> guestByName = new HashMap<>();
     public void addGuest(Guest guest) { /* TODO */
-   if(guestByName.containsKey(guest.getName())){
-
+   if(guestByName.containsKey(guest.getName()) || guests.contains(guest)){
+       System.out.println("Guest already exists");
    } else{
     guests.add(guest);
     guestByName.put(guest.getName(), guest);}
