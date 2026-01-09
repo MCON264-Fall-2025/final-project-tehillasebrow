@@ -15,7 +15,7 @@ public class TaskManager {
         Task nextTask=upcoming.remove();
         completed.push(nextTask);
        return nextTask; }
-    public Task undoLastTask() {
+    public Task undoLastTask() {//used a deque
 
         if(this.completed.isEmpty()){return null;}
         Task task = completed.pop();
