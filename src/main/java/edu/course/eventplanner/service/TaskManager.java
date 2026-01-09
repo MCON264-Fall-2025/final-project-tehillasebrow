@@ -7,21 +7,21 @@ public class TaskManager {
     private final Queue<Task> upcoming = new LinkedList<>();
     private final Stack<Task> completed = new Stack<>();
     public void addTask(Task task) { /* TODO */
-        upcoming.add(task);
+        this.upcoming.add(task);
     }
     public Task executeNextTask() {
 
-        if(upcoming.isEmpty()){return null;}
-        Task nextTask=upcoming.remove();
-        completed.push(nextTask);
+        if(this.upcoming.isEmpty()){return null;}
+        Task nextTask=this.upcoming.remove();
+        this.completed.push(nextTask);
        return nextTask; }
     public Task undoLastTask() {
 
-        if(completed.isEmpty()){return null;}
-        Task task = completed.pop();
-        upcoming.add(task);
+        if(this.completed.isEmpty()){return null;}
+        Task task = this.completed.pop();
+        this.upcoming.add(task);
        return task;}
     public int remainingTaskCount() {
-        if(upcoming.isEmpty()){return 0;}
-        return upcoming.size()-1; }
+
+        return this.upcoming.size(); }
 }
