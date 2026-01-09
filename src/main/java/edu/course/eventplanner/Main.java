@@ -25,7 +25,11 @@ Add preparation task
 Execute next task
 Undo last task
 Print event summary
-you have to ask the user for input!!!!!!!*/
+you have to ask the user for input!!!!!!!
+you should call the generator after getting number of guests but before the loop.
+In the loop you should order a user to add a guest or remove a guest, not generate a list of guests.
+The requirement is that that guest list is provided to the program and in the interactive mode user will add/remove individual guests.
+*/
 
 
     Scanner sc=new Scanner(System.in);
@@ -34,12 +38,20 @@ you have to ask the user for input!!!!!!!*/
     VenueSelector venueSelector= new VenueSelector(Generators.generateVenues());
     Venue selectedVenue = null;
     SeatingPlanner seatingPlanner = null;
+        System.out.println("How many guests do you want to add?");
+        int guests = sc.nextInt();
+        sc.nextLine();
+
+        for (Guest g : Generators.GenerateGuests(guests)) {
+            guestListManager.addGuest(g);
+        }
+        System.out.println("Guests added.");
 
    boolean running=true;
 while(running) {
     System.out.println("---------------------------");
     System.out.println("Welcome to the Event Planner!");
-    System.out.print("\n 1. Load Sample Data\n 2. Add Guest \n 3. Remove Guest \n4. Select Venue\n 5.Generate seating chart\n" +
+    System.out.print("\n1. Display Menu 2. Add Guest \n 3. Remove Guest \n4. Select Venue\n 5.Generate seating chart\n" +
             "6. Add preparation task\n" +
             "7. Execute next task\n" +
             "8. Undo last task\n" +
@@ -52,32 +64,13 @@ while(running) {
     sc.nextLine();
     switch (num) {
         case 1:
-            System.out.println("How many guests do you want to add?");
-            int guests = sc.nextInt();
-            sc.nextLine();
-
-            for (Guest g : Generators.GenerateGuests(guests)) {
-                guestListManager.addGuest(g);
-            }
-            System.out.println("Guests added.");
+           displayMenu();
             break;
         case 2:
-            System.out.println("Enter guest name:");
-            String name = sc.nextLine();
-            System.out.println("Enter group (family, friends, neighbors, coworkers): ");
-            String group = sc.nextLine();
-            Guest g = new Guest(name, group);
-            guestListManager.addGuest(g);
+            addGuest(sc, guestListManager);
             break;
         case 3:
-            System.out.print("Enter name of guest to remove: ");
-            String removeName = sc.nextLine();
-            boolean removed = guestListManager.removeGuest(removeName);
-            if (removed) {
-                System.out.println("Guest removed");
-            } else {
-                System.out.println("Guest not found");
-            }
+            removeGuest(sc, guestListManager);
             break;
         case 4:
             System.out.print("Enter max budget: ");
@@ -91,12 +84,11 @@ while(running) {
                 seatingPlanner = new SeatingPlanner(selectedVenue);
             } else {
                 System.out.println("No suitable venue found.");
-                selectedVenue = null;
                 seatingPlanner = null;
             }
             break;
         case 5:
-            if (selectedVenue == null || seatingPlanner == null) {
+            if (selectedVenue == null) {
                 System.out.println("Please select a venue first!");
             } else {
                 List<Guest> allGuests = guestListManager.getAllGuests();
@@ -146,5 +138,40 @@ while(running) {
 
 
 
-    }}
+    }
+
+    private static void removeGuest(Scanner sc, GuestListManager guestListManager) {
+        System.out.print("Enter name of guest to remove: ");
+        String removeName = sc.nextLine();
+        boolean removed = guestListManager.removeGuest(removeName);
+        if (removed) {
+            System.out.println("Guest removed");
+        } else {
+            System.out.println("Guest not found");
+        }
+    }
+
+    private static void addGuest(Scanner sc, GuestListManager guestListManager) {
+        System.out.println("Enter guest name:");
+        String name = sc.nextLine();
+        System.out.println("Enter group (family, friends, neighbors, coworkers): ");
+        String group = sc.nextLine();
+        Guest g = new Guest(name, group);
+        guestListManager.addGuest(g);
+    }
+
+    public static void displayMenu(){
+    System.out.println("Welcome to the Event Planner!");
+    System.out.println("1. Display Menu");
+    System.out.println("2. Add Guest");
+    System.out.println("3. Remove Guest");
+    System.out.println("4. Select Venue");
+    System.out.println("5. Generate seating chart");
+    System.out.println("6. Add preparation task");
+    System.out.println("7. Execute next task");
+    System.out.println("8. Undo last task");
+    System.out.println("9. Print event summary");
+    System.out.println("10. Exit");
+}
+}
 
