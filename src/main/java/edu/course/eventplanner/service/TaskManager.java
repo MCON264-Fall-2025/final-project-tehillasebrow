@@ -4,24 +4,24 @@ import edu.course.eventplanner.model.Task;
 import java.util.*;
 
 public class TaskManager {
-    private final Queue<Task> upcoming = new LinkedList<>();
+    private final Deque<Task> upcoming = new LinkedList<>();
     private final Stack<Task> completed = new Stack<>();
     public void addTask(Task task) { /* TODO */
-        this.upcoming.add(task);
+        upcoming.add(task);
     }
     public Task executeNextTask() {
 
-        if(this.upcoming.isEmpty()){return null;}
-        Task nextTask=this.upcoming.remove();
-        this.completed.push(nextTask);
+        if(upcoming.isEmpty()){return null;}
+        Task nextTask=upcoming.remove();
+        completed.push(nextTask);
        return nextTask; }
     public Task undoLastTask() {
 
         if(this.completed.isEmpty()){return null;}
-        Task task = this.completed.pop();
-        this.upcoming.add(task);
+        Task task = completed.pop();
+       upcoming.addFirst(task);
        return task;}
     public int remainingTaskCount() {
 
-        return this.upcoming.size(); }
+        return upcoming.size(); }
 }

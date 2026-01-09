@@ -37,7 +37,7 @@ public class SeatingPlanner {
            while (!famQueue.isEmpty()){
                map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(famQueue.remove());
                seatsPerTablectr--;
-               if(seatsPerTablectr==0 || !(tablesctr ==0)){//when the seats get to 0, we decrease the table number and add seats back to the seats per table ctr
+               if(seatsPerTablectr==0 && tablesctr >1){//when the seats get to 0, we decrease the table number and add seats back to the seats per table ctr
                    tablesctr--;
                    seatsPerTablectr=venue.getSeatsPerTable();
                }
@@ -50,7 +50,7 @@ public class SeatingPlanner {
         while (!frndQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(frndQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0 || !(tablesctr ==0)){
+            if(seatsPerTablectr==0 && tablesctr >1){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
 
@@ -63,7 +63,7 @@ public class SeatingPlanner {
         while (!nbrQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(nbrQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0 || !(tablesctr ==0)){
+            if(seatsPerTablectr==0 && tablesctr >1){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
 
@@ -76,7 +76,7 @@ public class SeatingPlanner {
         while (!cwrkrQueue.isEmpty()){
             map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(cwrkrQueue.remove());
             seatsPerTablectr--;
-            if(seatsPerTablectr==0 || !(tablesctr ==0)){
+            if(seatsPerTablectr==0 && tablesctr >1){
                 tablesctr--;
                 seatsPerTablectr=venue.getSeatsPerTable();
 
