@@ -7,7 +7,6 @@ public class TaskManager {
     private final Queue<Task> upcoming = new LinkedList<>();
     private final Stack<Task> completed = new Stack<>();
     public void addTask(Task task) { /* TODO */
-
         upcoming.add(task);
     }
     public Task executeNextTask() {
@@ -21,5 +20,5 @@ public class TaskManager {
         Task task = completed.pop();
         upcoming.add(task);
        return task;}
-    public int remainingTaskCount() { return upcoming.size(); }
+    public int remainingTaskCount() { return upcoming.size()-1; }
 }
