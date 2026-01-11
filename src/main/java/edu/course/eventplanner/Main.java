@@ -106,12 +106,12 @@ The requirement is that that guest list is provided to the program and in the in
 
     }
 
-    private static boolean isRunning() {
+    static boolean isRunning() {
         System.out.println("Goodbye!");
         return false;
     }
 
-    private static void eventSum(GuestListManager guestListManager, Venue selectedVenue) {
+    static void eventSum(GuestListManager guestListManager, Venue selectedVenue) {
         System.out.println("Event Summary:");
         System.out.println("Total guest count: " + guestListManager.getGuestCount());
         System.out.println("Selected venue: " + (selectedVenue == null ? "None" : selectedVenue.getName()));
@@ -125,7 +125,7 @@ The requirement is that that guest list is provided to the program and in the in
         System.out.println("Task " + unTask.getDescription() + " was undone");}
     }
 
-    private static void executeTask(TaskManager taskManager) {
+    static void executeTask(TaskManager taskManager) {
         Task task = taskManager.executeNextTask();
         if (task != null) {
             System.out.println("Task executed successfully.");
@@ -134,14 +134,14 @@ The requirement is that that guest list is provided to the program and in the in
         }
     }
 
-    private static void addTask(Scanner sc, TaskManager taskManager) {
+    static void addTask(Scanner sc, TaskManager taskManager) {
         System.out.println("Enter task description:");
         String taskDescription = sc.nextLine();
         taskManager.addTask(new Task(taskDescription));
         System.out.println("Task added.");
     }
 
-    private static void generateSeatingChart(Venue selectedVenue, GuestListManager guestListManager, SeatingPlanner seatingPlanner) {
+    static void generateSeatingChart(Venue selectedVenue, GuestListManager guestListManager, SeatingPlanner seatingPlanner) {
         if (selectedVenue == null) {
             System.out.println("Please select a venue first!");
         } else {
@@ -169,7 +169,7 @@ The requirement is that that guest list is provided to the program and in the in
         return seatingPlanner;
     }
 
-    private static Venue getVenue(Scanner sc, VenueSelector venueSelector) {
+    static Venue getVenue(Scanner sc, VenueSelector venueSelector) {
         Venue selectedVenue;
         System.out.print("Enter max budget: ");
         double budget = sc.nextDouble();
@@ -180,7 +180,7 @@ The requirement is that that guest list is provided to the program and in the in
         return selectedVenue;
     }
 
-    private static void removeGuest(Scanner sc, GuestListManager guestListManager) {
+    static void removeGuest(Scanner sc, GuestListManager guestListManager) {
         System.out.print("Enter name of guest to remove: ");
         String removeName = sc.nextLine();
         boolean removed = guestListManager.removeGuest(removeName);
@@ -191,7 +191,7 @@ The requirement is that that guest list is provided to the program and in the in
         }
     }
 
-    private static void addGuest(Scanner sc, GuestListManager guestListManager) {
+    static void addGuest(Scanner sc, GuestListManager guestListManager) {
         System.out.println("Enter guest name:");
         String name = sc.nextLine();
         System.out.println("Enter group (family, friends, neighbors, coworkers): ");
