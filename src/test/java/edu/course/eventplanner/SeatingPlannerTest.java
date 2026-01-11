@@ -72,7 +72,16 @@ public class SeatingPlannerTest {
 
         assertFalse(seating.isEmpty());
     }
-
+@Test
+    void testSeatingWith1Guest(){
+        Venue venue = new Venue("Test", 0, 0, 10, 10);
+        List<Guest> guests = List.of(new Guest("A","family"));
+        Map<Integer, List<Guest>> seating =
+                new SeatingPlanner(venue).generateSeating(guests);
+        assertEquals(1,seating.size());
+        assertEquals(1,seating.get(10).size());
+    assertFalse(seating.isEmpty());
+    }
 
 
 
