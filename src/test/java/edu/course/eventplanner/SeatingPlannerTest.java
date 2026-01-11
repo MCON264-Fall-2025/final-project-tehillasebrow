@@ -79,7 +79,9 @@ public class SeatingPlannerTest {
         Map<Integer, List<Guest>> seating =
                 new SeatingPlanner(venue).generateSeating(guests);
         assertEquals(1,seating.size());
-        assertEquals(1,seating.get(10).size());
+        assertEquals(1,seating.get(10).size());//1 person in the tenth table
+        assertEquals("A",seating.get(10).getFirst().getName());
+
     assertFalse(seating.isEmpty());
     }
 
