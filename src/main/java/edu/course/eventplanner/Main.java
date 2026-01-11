@@ -32,12 +32,12 @@ The requirement is that that guest list is provided to the program and in the in
 */
 
 
-    Scanner sc=new Scanner(System.in);
-    GuestListManager  guestListManager=new GuestListManager();
-    TaskManager taskManager = new TaskManager();
-    VenueSelector venueSelector= new VenueSelector(Generators.generateVenues());
-    Venue selectedVenue = null;
-    SeatingPlanner seatingPlanner = null;
+        Scanner sc = new Scanner(System.in);
+        GuestListManager guestListManager = new GuestListManager();
+        TaskManager taskManager = new TaskManager();
+        VenueSelector venueSelector = new VenueSelector(Generators.generateVenues());
+        Venue selectedVenue = null;
+        SeatingPlanner seatingPlanner = null;
         System.out.println("How many guests do you want to add?");
         int guests = sc.nextInt();
         sc.nextLine();
@@ -47,66 +47,61 @@ The requirement is that that guest list is provided to the program and in the in
         }
         System.out.println("Guests added.");
 
-   boolean running=true;
-while(running) {
-    System.out.println("---------------------------");
-    System.out.println("Welcome to the Event Planner!");
-    System.out.print("\n1. Display Menu 2. Add Guest \n 3. Remove Guest \n4. Select Venue\n 5.Generate seating chart\n" +
-            "6. Add preparation task\n" +
-            "7. Execute next task\n" +
-            "8. Undo last task\n" +
-            "9. Print event summary\n 10. Exit\n");
-    if (!sc.hasNextInt()) {
-        System.out.println("Invalid input. Please enter a number.");
-        sc.next(); //
-        continue;}
-   int num=sc.nextInt();
-    sc.nextLine();
-    switch (num) {
-        case 1:
-           displayMenu();
-            break;
-        case 2:
-            addGuest(sc, guestListManager);
-            break;
-        case 3:
-            removeGuest(sc, guestListManager);
-            break;
-        case 4:
-            selectedVenue = getVenue(sc, venueSelector);
-            seatingPlanner = getSeatingPlanner(selectedVenue);
-            break;
-        case 5:
-           generateSeatingChart(selectedVenue, guestListManager, seatingPlanner);
+        boolean running = true;
+        while (running) {
+            System.out.println("---------------------------");
+            System.out.println("Welcome to the Event Planner!");
+            System.out.print("Press 1 to display the menu, or any other key to exit: ");
+            if (!sc.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a number.");
+                sc.next(); //
+                continue;
+            }
+            int num = sc.nextInt();
+            sc.nextLine();
+            switch (num) {
+                case 1:
+                    displayMenu();
+                    break;
+                case 2:
+                    addGuest(sc, guestListManager);
+                    break;
+                case 3:
+                    removeGuest(sc, guestListManager);
+                    break;
+                case 4:
+                    selectedVenue = getVenue(sc, venueSelector);
+                    seatingPlanner = getSeatingPlanner(selectedVenue);
+                    break;
+                case 5:
+                    generateSeatingChart(selectedVenue, guestListManager, seatingPlanner);
 
 
-            break;
-        case 6:
-           addTask(sc, taskManager);
-            break;
-        case 7:
-            executeTask(taskManager);
-            break;
-        case 8:
+                    break;
+                case 6:
+                    addTask(sc, taskManager);
+                    break;
+                case 7:
+                    executeTask(taskManager);
+                    break;
+                case 8:
 
-            undoTasks(taskManager);
-            break;
-        case 9:
-            eventSum(guestListManager, selectedVenue);
+                    undoTasks(taskManager);
+                    break;
+                case 9:
+                    eventSum(guestListManager, selectedVenue);
 
-            break;
-        case 10:
-            running = isRunning();
-            break;
-        default:
-            System.out.println("Invalid option-Try again");
-            break;
+                    break;
+                case 10:
+                    running = isRunning();
+                    break;
+                default:
+                    System.out.println("Invalid option-Try again");
+                    break;
 
-    }
+            }
 
-}
-
-
+        }
 
 
     }
@@ -123,15 +118,20 @@ while(running) {
     }
 
     private static void undoTasks(TaskManager taskManager) {
-        System.out.println("Task "+ taskManager.undoLastTask() +" was undone");
+     Task  unTask =taskManager.undoLastTask();
+        if (unTask== null) {
+            System.out.println("No tasks to undo");
+        }else{
+        System.out.println("Task " + unTask.getDescription() + " was undone");}
     }
 
     private static void executeTask(TaskManager taskManager) {
-        Task task= taskManager.executeNextTask();
-        if(task!=null) {
+        Task task = taskManager.executeNextTask();
+        if (task != null) {
             System.out.println("Task executed successfully.");
-        }else{
-        System.out.println("No task found");}
+        } else {
+            System.out.println("No task found");
+        }
     }
 
     private static void addTask(Scanner sc, TaskManager taskManager) {
@@ -149,9 +149,9 @@ while(running) {
             Map<Integer, List<Guest>> chart = seatingPlanner.generateSeating(allGuests);
             for (Map.Entry<Integer, List<Guest>> entry : chart.entrySet()) {
                 System.out.println("Table " + entry.getKey() + ": ");
-                        for( Guest g:entry.getValue()) {
-                            System.out.println(g.getName()+" "+g.getGroupTag());
-                        }
+                for (Guest g : entry.getValue()) {
+                    System.out.println(g.getName() + " " + g.getGroupTag());
+                }
 
             }
         }
@@ -201,18 +201,18 @@ while(running) {
         System.out.println("Guest added!");
     }
 
-    public static void displayMenu(){
-    System.out.println("Welcome to the Event Planner!");
-    System.out.println("1. Display Menu");
-    System.out.println("2. Add Guest");
-    System.out.println("3. Remove Guest");
-    System.out.println("4. Select Venue");
-    System.out.println("5. Generate seating chart");
-    System.out.println("6. Add preparation task");
-    System.out.println("7. Execute next task");
-    System.out.println("8. Undo last task");
-    System.out.println("9. Print event summary");
-    System.out.println("10. Exit");
-}
+    public static void displayMenu() {
+        System.out.println("Welcome to the Event Planner!");
+        System.out.println("1. Display Menu");
+        System.out.println("2. Add Guest");
+        System.out.println("3. Remove Guest");
+        System.out.println("4. Select Venue");
+        System.out.println("5. Generate seating chart");
+        System.out.println("6. Add preparation task");
+        System.out.println("7. Execute next task");
+        System.out.println("8. Undo last task");
+        System.out.println("9. Print event summary");
+        System.out.println("10. Exit");
+    }
 }
 
