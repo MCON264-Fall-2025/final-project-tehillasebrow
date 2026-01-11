@@ -35,6 +35,43 @@ public class SeatingPlannerTest {
         Map<Integer, List<Guest>> seating= new SeatingPlanner(venue).generateSeating(List.of());
         assertEquals(0, seating.size());
     }
+    @Test
+    void testSeatingWith30Guests(){
+        Venue venue= new Venue("Cheap Place", 1000, 300, 10, 10);
+        List<Guest> guests = new java.util.ArrayList<>(List.of());
+        Guest g;
+                for(int i=0;i<30;i++){
+                    g= new Guest("Shira Gold"+i, "family");
+                    guests.add(g);
+        }
+        Map<Integer, List<Guest>> seating= new SeatingPlanner(venue).generateSeating(guests);
+        assertEquals(3, seating.size()); //table size
+        assertEquals(10, seating.get(10).size());
+        assertFalse(seating.containsKey(3));//since i fill the tables backwards, table 3 shld not be there
+        assertFalse(seating.containsKey(6));
+        assertTrue(seating.containsKey(9));
+        assertTrue(seating.containsKey(10));
+        assertTrue(seating.containsKey(8));
+        assertEquals(10, seating.get(9).size());
+        assertEquals(10, seating.get(10).size());
+    }
+
+    @Test
+    void testSeatingWith5Guests(){
+        Venue venue = new Venue("Test", 0, 0, 10, 10);
+        List<Guest> guests = List.of(
+                new Guest("A","family"),
+                new Guest("B","friends"),
+                new Guest("C","coworkers"),
+                new Guest("D","friends"),
+                new Guest("E","neighbors")
+        );
+
+        Map<Integer, List<Guest>> seating =
+                new SeatingPlanner(venue).generateSeating(guests);
+
+        assertFalse(seating.isEmpty());
+    }
 
 
 
