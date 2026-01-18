@@ -14,7 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class MainTest
 {
 
-
+    @Test
+    void testDisplayMenu() {
+        Main.displayMenu();
+    }
 
     @Test
     void testAddGuest(){

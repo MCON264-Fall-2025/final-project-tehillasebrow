@@ -35,5 +35,16 @@ public class GuestListManagerTest {
 
 
     }
+    @Test
+    void testAddDuplicateGuest() {
+        GuestListManager manager = new GuestListManager();
+        Guest g = new Guest("DOUBLE TROUBLE", "family");
+
+        manager.addGuest(g);
+        manager.addGuest(g); // Try adding the same guest again
+
+        // The count should still be 1, and the "else" branch should have been skipped
+        assertEquals(1, manager.getGuestCount());
+    }
 }
 
