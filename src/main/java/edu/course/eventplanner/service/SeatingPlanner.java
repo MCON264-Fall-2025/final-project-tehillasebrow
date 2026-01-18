@@ -13,7 +13,7 @@ public class SeatingPlanner {
 
     public Map<Integer, List<Guest>> generateSeating(List<Guest> guests) {
         Map<String, Queue<Guest>> groupQueues = new LinkedHashMap<>();
-
+// We use a LinkedHashMap to preserve the order of groups
         for (Guest guest : guests) {
             groupQueues.computeIfAbsent(guest.getGroupTag(), k -> new LinkedList<>()).add(guest);
         }
@@ -29,7 +29,7 @@ public class SeatingPlanner {
         Map<Integer, List<Guest>> map = new TreeMap<>();
 //goes through the family list and adds them to the tables first. Table 10 fills up first, then table 9 ect...
         for (Queue<Guest> queue : groupQueues.values()) {
-            while (!groupQueues.isEmpty()) {
+            while (!queue.isEmpty()) {
                 map.computeIfAbsent(tablesctr, k -> new ArrayList<>()).add(queue.remove());
                 seatsPerTablectr--;
                 if (seatsPerTablectr == 0 && tablesctr > 0) {
